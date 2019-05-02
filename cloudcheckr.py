@@ -24,7 +24,19 @@ r = requests.get(api_url)
 theJson = r.text
 parsedJson=json.loads(theJson)
 
-print(json.dumps(parsedJson, indent=2, sort_keys=True))
+# print(json.dumps(parsedJson, indent=2, sort_keys=True))
+
+i = 1
+for instance in parsedJson['Ec2Instances']:
+        print(str(i) + '. ' + instance['InstanceId'])
+        i += 1
+        for resourcetag in instance['ResourceTags']:
+                if resourcetag['Key'] == 'cloudhesivemanaged':
+                        print(resourcetag['Key'] + ' = ' + resourcetag['Value'])
+                        # print(resourcetag['Value']) 
+                # print resourcetag
+
+        
 
 # list = []
 
