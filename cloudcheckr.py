@@ -28,12 +28,13 @@ parsedJson=json.loads(theJson)
 
 i = 1
 for instance in parsedJson['Ec2Instances']:
-        print(str(i) + '. ' + instance['InstanceId'])
-        i += 1
         for resourcetag in instance['ResourceTags']:
-                if resourcetag['Key'] == 'cloudhesivemanaged':
-                        print(resourcetag['Key'] + ' = ' + resourcetag['Value'])
-                        # print(resourcetag['Value']) 
+                if resourcetag['Key'] == 'Name':
+                        if resourcetag['Value'] != None:
+                                print(str(i) + '.) ' + instance['InstanceId'] + ' '+ resourcetag['Key'] + ' = ' + resourcetag['Value'])
+                        else:
+                                print(str(i) + '.) ' + instance['InstanceId'] + ' '+ resourcetag['Key'] + ' = ' + 'NOTHING')
+                        i += 1
                 # print resourcetag
 
         
